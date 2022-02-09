@@ -1,6 +1,13 @@
 import UserLoginItem from '../components/UserLoginItem'
+import { User } from '../myTypes'
 
-function Login ({ users, logIn, setModal }) {
+type Props = {
+  users: User[]
+  logIn: Function
+  setModal: React.Dispatch<React.SetStateAction<string>>
+}
+
+function Login ({ users, logIn, setModal }: Props) {
   return (
     <div className='main-wrapper login'>
       <section className='login-section'>

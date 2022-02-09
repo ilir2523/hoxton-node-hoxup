@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound'
 import { User } from './myTypes'
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState<User[] | null>(null)
+  const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [modal, setModal] = useState('')
   const [users, setUsers] = useState<User[]>([])
 
@@ -20,7 +20,7 @@ export default function App() {
 
   const navigate = useNavigate()
 
-  function logIn(user: User[]) {
+  function logIn(user: User) {
     // set user in state as the current user
     setCurrentUser(user)
     // navigate to the main page

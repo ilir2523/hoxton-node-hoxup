@@ -1,4 +1,11 @@
-function UserLoginItem ({ user, logIn }) {
+import { User } from '../myTypes'
+
+type Props = {
+  user: User
+  logIn: Function
+}
+
+function UserLoginItem ({ user, logIn }: Props) {
   return (
     <li>
       <button

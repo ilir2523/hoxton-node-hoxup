@@ -1,9 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Conversation from '../components/Conversation'
+import { User, ConversationType } from '../myTypes'
 
-function Main({ currentUser, logOut, users, setModal, modal }) {
-  const [conversations, setConversations] = useState([])
+type Props = {
+  currentUser: User | null
+  logOut: Function
+  users: User[]
+  setModal: React.Dispatch<React.SetStateAction<string>>
+  modal: string
+}
+
+function Main({ currentUser, logOut, users, setModal, modal }: Props) {
+  const [conversations, setConversations] = useState<ConversationType[]>([])
   const params = useParams()
   const navigate = useNavigate()
 
@@ -37,14 +46,14 @@ function Main({ currentUser, logOut, users, setModal, modal }) {
     return true
   })
 
-  function createConversation(participantId) {
+  function createConversation(participantId: number) {
     fetch('http://localhost:4000/conversations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userId: currentUser.id,
+        userId: currentUser?.id,
         participantId: participantId
       })
     })
@@ -106,7 +115,7 @@ function Main({ currentUser, logOut, users, setModal, modal }) {
 
             // what are their details?
             const talkingToUser = users.find(user => user.id === talkingToId)
-
+            if (!talkingToUser) return
             return (
               <li key={conversation.id}>
                 <button

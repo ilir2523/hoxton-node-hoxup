@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Message from './Message'
+import { User, CurrentConversation, FormType } from '../myTypes'
 
-function Conversation({ currentUser }) {
-  const [currentConversation, setCurrentConversation] = useState(null)
+type Props = {
+  currentUser: User
+}
+
+function Conversation({ currentUser }: Props) {
+  const [currentConversation, setCurrentConversation] = useState<CurrentConversation | null>(null)
 
   const params = useParams()
 
-  function createMessage(text) {
+  function createMessage(text: string) {
     // create a message on the server ✅
 
     fetch('http://localhost:4000/messages', {
@@ -64,10 +69,11 @@ function Conversation({ currentUser }) {
       <footer>
         <form
           className='panel conversation__message-box'
-          onSubmit={e => {
+          onSubmit={(e: React.SyntheticEvent) => {
+            const formEl = e.target as FormType;
             e.preventDefault()
-            createMessage(e.target.text.value)
-            e.target.reset()
+            createMessage(formEl.text.value)
+            formEl.reset()
           }}
         >
           <input

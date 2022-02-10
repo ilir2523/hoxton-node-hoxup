@@ -2,7 +2,7 @@ import { User } from '../myTypes'
 
 type Props = {
   user: User
-  logIn: Function
+  logIn: (user: User) => void
 }
 
 function UserLoginItem ({ user, logIn }: Props) {

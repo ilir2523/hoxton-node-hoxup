@@ -3,7 +3,7 @@ import { User } from '../myTypes'
 
 type Props = {
   users: User[]
-  logIn: Function
+  logIn: (user: User) => void
   setModal: React.Dispatch<React.SetStateAction<string>>
 }
 

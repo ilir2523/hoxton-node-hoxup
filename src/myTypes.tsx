@@ -1,5 +1,3 @@
-import { type } from "os"
-
 export type User = {
     firstName: string
     lastName: string
@@ -22,12 +20,10 @@ export type MessageType = {
     id: number
 }
 
-export type CurrentConversation = {
-    userId: number,
-    participantId: number,
-    id: number,
+export type CurrentConversation = ConversationType & {
     messages: MessageType[]
 }
+
 
 export type FormType = HTMLFormElement & {
     text: HTMLInputElement

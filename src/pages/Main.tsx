@@ -5,7 +5,7 @@ import { User, ConversationType } from '../myTypes'
 
 type Props = {
   currentUser: User | null
-  logOut: Function
+  logOut: () => void
   users: User[]
   setModal: React.Dispatch<React.SetStateAction<string>>
   modal: string
